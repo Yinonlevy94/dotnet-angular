@@ -1,6 +1,33 @@
-@"
-.vs/
+# Build outputs
 bin/
 obj/
-node_modules/
-"@ | Set-Content .gitignore -Encoding utf8
+[Dd]ebug/
+[Rr]elease/
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.user
+*.suo
+*.userprefs
+*.sln.docstates
+.vscode/
+
+# Mac
+.DS_Store
+._*
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# User-specific files
+*.rsuser
+*.userosscache
+appsettings.Development.json
+
+# Database - KEEP the db file
+# (by default .db files are tracked)
+
+# Logs
+*.log

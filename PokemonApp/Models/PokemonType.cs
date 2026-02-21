@@ -1,6 +1,6 @@
 ﻿namespace PokemonApp.Models
 {
-    public enum Type
+    public enum PokemonType
     {
         Normal,
         Fire,
