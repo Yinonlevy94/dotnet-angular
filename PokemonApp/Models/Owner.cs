@@ -2,20 +2,20 @@
 {
     public class Owner
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public County Origin { get; set; }
-        public ICollection<Pokemon> MonsList { get; set; }
+        public int id { get; set; }
+        public string? name { get; set; }
+        public County? origin { get; set; }
+        public ICollection<Pokemon>? monsList { get; set; }
 
         public Owner()
         {
-            this.MonsList = new List<Pokemon>(6);
+            this.monsList = new List<Pokemon>(6);
         }
 
         public Owner(string name, County origin)
         {
-            this.Name = name;
-            this.Origin = origin;
+            this.name = name;
+            this.origin = origin;
         }
     }
     

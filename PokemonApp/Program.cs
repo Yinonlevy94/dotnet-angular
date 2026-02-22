@@ -12,6 +12,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<PokemonDbContext>(options => options.UseSqlite("Data Source=Pokemon.db"));
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<PokemonDbContext>();
+    context.Database.EnsureCreated();
+    DbSeed.SeedDb(context);
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
