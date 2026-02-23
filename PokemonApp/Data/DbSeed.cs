@@ -17,55 +17,55 @@ public class DbSeed
         context.SaveChanges();
 
         
-        var pokeball = new Item { name = "Pokeball", description = "Standard catching device" };
-        var potion = new Item { name = "Potion", description = "Restores 20 HP" };
-        var rare_candy = new Item { name = "Rare Candy", description = "Levels up Pokemon" };
+        var pokeball = new Item { Name = "Pokeball", Description = "Standard catching device" };
+        var potion = new Item { Name = "Potion", Description = "Restores 20 HP" };
+        var rare_candy = new Item { Name = "Rare Candy", Description = "Levels up Pokemon" };
         context.Items.AddRange(pokeball, potion, rare_candy);
         context.SaveChanges();
 
         
-        var ash = new Owner { name = "Ash Ketchum", origin = kanto };
-        var misty = new Owner { name = "Misty", origin = kanto };
-        var brock = new Owner { name = "Brock", origin = kanto };
+        var ash = new Owner { Name = "Ash Ketchum", Origin = kanto };
+        var misty = new Owner { Name = "Misty", Origin = kanto };
+        var brock = new Owner { Name = "Brock", Origin = kanto };
         context.Owners.AddRange(ash, misty, brock);
         context.SaveChanges();
 
         
         var pikachu = new Pokemon 
         { 
-            name = "Pikachu", 
-            type1 = PokemonType.Electric, 
-            level = 55, 
-            owner = "ash", 
+            Name = "Pikachu", 
+            Type1 = PokemonType.Electric, 
+            Level = 55, 
+            Owner = "ash", 
         };
         
         var charizard = new Pokemon 
         { 
-            name = "Charizard", 
-            type1 = PokemonType.Fire, 
-            type2 = PokemonType.Flying, 
-            level = 65, 
-            owner = "ash", 
+            Name = "Charizard", 
+            Type1 = PokemonType.Fire, 
+            Type2 = PokemonType.Flying, 
+            Level = 65, 
+            Owner = "ash", 
         };
 
         
         var starmie = new Pokemon 
         { 
-            name = "Starmie", 
-            type1 = PokemonType.Water, 
-            type2 = PokemonType.Psychic, 
-            level = 50, 
-            owner = "misty", 
+            Name = "Starmie", 
+            Type1 = PokemonType.Water, 
+            Type2 = PokemonType.Psychic, 
+            Level = 50, 
+            Owner = "misty", 
         };
 
         
         var onix = new Pokemon 
         { 
-            name = "Onix", 
-            type1 = PokemonType.Rock, 
-            type2 = PokemonType.Ground, 
-            level = 48, 
-            owner = "brock", 
+            Name = "Onix", 
+            Type1 = PokemonType.Rock, 
+            Type2 = PokemonType.Ground, 
+            Level = 48, 
+            Owner = "brock", 
         };
 
         context.Pokemons.AddRange(pikachu, charizard, starmie, onix);

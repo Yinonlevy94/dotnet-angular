@@ -17,7 +17,7 @@ public class CountyController : ControllerBase
     {
         try
         {
-            var dupCounty = _pokemonDbContext.Counties.FirstOrDefault(c => c.name == name);
+            var dupCounty = _pokemonDbContext.Counties.FirstOrDefault(c => c.Name == name);
             if (dupCounty != null) return NotFound("duplicate county name");
             var newCounty = new County(name);
             _pokemonDbContext.Counties.Add(newCounty);

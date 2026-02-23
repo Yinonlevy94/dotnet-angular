@@ -2,12 +2,12 @@
 {
     public class County
     {
-        public int id { get; set; }
-        public string name { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
 
         public County(string name)
         {
-            this.name = name;
+            this.Name = name;
         }
     }
 }

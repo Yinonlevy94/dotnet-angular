@@ -29,7 +29,7 @@ public class OwnerController : ControllerBase
     {
         try
         {
-            var dupTrainer = _pokemonDbContext.Owners.FirstOrDefault(t => t.name == name);
+            var dupTrainer = _pokemonDbContext.Owners.FirstOrDefault(t => t.Name == name);
             if (dupTrainer == null)
             {
                 var trainer = new Owner(name, county);

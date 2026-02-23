@@ -30,17 +30,21 @@ public class PokemonController : ControllerBase
     {
         // try
         // {
-            var exists = _pokemonDbContext.Pokemons.FirstOrDefault(p => p.name == name);
+            var exists = _pokemonDbContext.Pokemons.FirstOrDefault(p => p.Name == name);
             if (exists != null) return BadRequest("Duplicate Pokemon");
             
             var owner = _pokemonDbContext.Owners.Find(ownerId);
             if (owner == null) return NotFound("Owner not found");
-            
-            var newMon = new Pokemon(name, type1, type2, level, owner.name);
-            _pokemonDbContext.Add(newMon);
-            _pokemonDbContext.SaveChanges();
-            return Ok(newMon);
-        // }
+
+            if (owner.Name != null)
+            {
+                var newMon = new Pokemon(name, type1, type2, level, owner.Name);
+                _pokemonDbContext.Add(newMon);
+                _pokemonDbContext.SaveChanges();
+                return Ok(newMon);
+            }
+
+            // }
         // catch
         // {
             return NotFound("error");
@@ -55,10 +59,10 @@ public class PokemonController : ControllerBase
             var trainer =_pokemonDbContext.Owners.Find(trainerID);
             var mon = _pokemonDbContext.Pokemons.Find(monID);
             if (mon == null || trainer == null) return NotFound("mon/trainer not found, supply a different one");
-            var dupMon =trainer.monsList.Contains(mon);
+            var dupMon =trainer.MonsList.Contains(mon);
             if (!dupMon)
             {
-                trainer.monsList.Add(mon);
+                trainer.MonsList.Add(mon);
                 _pokemonDbContext.SaveChanges();
                 return Ok("added mon to trainer");
             }
@@ -79,7 +83,7 @@ public class PokemonController : ControllerBase
         {
             var mon = _pokemonDbContext.Pokemons.Find(monID);
             if (mon == null) return NotFound("mon does not exists");
-            mon.attacks = attacks;
+            mon.Attacks = attacks;
             _pokemonDbContext.SaveChanges();
             return Ok(attacks);
         }
