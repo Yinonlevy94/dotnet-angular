@@ -64,7 +64,7 @@ public class PokemonController : ControllerBase
             {
                 trainer.MonsList.Add(mon);
                 _pokemonDbContext.SaveChanges();
-                return Ok("added mon to trainer");
+                return Ok(trainer.MonsList);
             }
             
             return NotFound("Trainer already has this mon");
