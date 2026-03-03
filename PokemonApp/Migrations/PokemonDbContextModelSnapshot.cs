@@ -32,7 +32,12 @@ namespace PokemonApp.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("PokemonId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("PokemonId");
 
                     b.ToTable("Attacks");
                 });
@@ -78,6 +83,7 @@ namespace PokemonApp.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("OriginId")
@@ -96,14 +102,13 @@ namespace PokemonApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("HeldItemId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("Level")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Owner")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -118,9 +123,18 @@ namespace PokemonApp.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("HeldItemId");
+
                     b.HasIndex("OwnerId");
 
                     b.ToTable("Pokemons");
+                });
+
+            modelBuilder.Entity("PokemonApp.Models.Attack", b =>
+                {
+                    b.HasOne("PokemonApp.Models.Pokemon", null)
+                        .WithMany("Attacks")
+                        .HasForeignKey("PokemonId");
                 });
 
             modelBuilder.Entity("PokemonApp.Models.Owner", b =>
@@ -134,14 +148,27 @@ namespace PokemonApp.Migrations
 
             modelBuilder.Entity("PokemonApp.Models.Pokemon", b =>
                 {
-                    b.HasOne("PokemonApp.Models.Owner", null)
+                    b.HasOne("PokemonApp.Models.Item", "HeldItem")
+                        .WithMany()
+                        .HasForeignKey("HeldItemId");
+
+                    b.HasOne("PokemonApp.Models.Owner", "Owner")
                         .WithMany("MonsList")
                         .HasForeignKey("OwnerId");
+
+                    b.Navigation("HeldItem");
+
+                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("PokemonApp.Models.Owner", b =>
                 {
                     b.Navigation("MonsList");
+                });
+
+            modelBuilder.Entity("PokemonApp.Models.Pokemon", b =>
+                {
+                    b.Navigation("Attacks");
                 });
 #pragma warning restore 612, 618
         }
